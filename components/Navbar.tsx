@@ -51,7 +51,7 @@ export default function Navbar() {
             >
               <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-fib-gold/50">
                 <Image 
-                  src="/fib.jpg" 
+                  src="/fib.png" 
                   alt="FIB Logo" 
                   width={48}
                   height={48}

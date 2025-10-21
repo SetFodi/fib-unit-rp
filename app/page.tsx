@@ -65,23 +65,52 @@ export default function Home() {
             className="mb-12"
           >
             <div className="relative w-72 h-72 mx-auto">
+              {/* Outer glow layers */}
               <motion.div
                 animate={{ 
-                  boxShadow: [
-                    "0 0 30px rgba(212, 175, 55, 0.4)",
-                    "0 0 60px rgba(212, 175, 55, 0.7)",
-                    "0 0 30px rgba(212, 175, 55, 0.4)",
+                  opacity: [0.3, 0.6, 0.3],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 blur-3xl bg-gradient-radial from-fib-gold/40 via-fib-gold/20 to-transparent rounded-full"
+                style={{
+                  transform: 'translate(-10%, -10%)',
+                  width: '120%',
+                  height: '120%'
+                }}
+              />
+              <motion.div
+                animate={{ 
+                  opacity: [0.4, 0.7, 0.4],
+                  scale: [1, 1.05, 1]
+                }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="absolute inset-0 blur-2xl bg-gradient-radial from-fib-gold/50 via-fib-gold/25 to-transparent rounded-full"
+                style={{
+                  transform: 'translate(-5%, -5%)',
+                  width: '110%',
+                  height: '110%'
+                }}
+              />
+              
+              {/* Logo */}
+              <motion.div
+                animate={{ 
+                  filter: [
+                    "drop-shadow(0 0 20px rgba(212, 175, 55, 0.6))",
+                    "drop-shadow(0 0 40px rgba(212, 175, 55, 0.9))",
+                    "drop-shadow(0 0 20px rgba(212, 175, 55, 0.6))",
                   ]
                 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 rounded-full"
+                className="relative z-10"
               >
                 <Image 
-                  src="/fib.jpg" 
+                  src="/fib.png" 
                   alt="FIB Logo" 
                   width={288}
                   height={288}
-                  className="rounded-full object-cover border-4 border-fib-gold/30"
+                  className="object-contain"
                   priority
                 />
               </motion.div>

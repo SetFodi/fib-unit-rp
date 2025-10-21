@@ -9,7 +9,7 @@ Modern website for the Federal Investigation Bureau in GTA 5 RP server.
 npm install
 
 # Add your logo
-# Place fib.jpg in the public folder
+# Place fib.png (or fib.jpg) in the public folder
 
 # Start development server
 npm run dev
@@ -47,7 +47,7 @@ The form works without this setup (won't actually send emails though).
 
 **Colors:** Edit `tailwind.config.js`  
 **Content:** Edit files in `app/` folder  
-**Logo:** Replace `public/fib.jpg`
+**Logo:** Replace `public/fib.png`
 
 ## Deploy
 

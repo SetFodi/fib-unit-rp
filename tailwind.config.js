@@ -19,6 +19,9 @@ module.exports = {
         'heading': ['Rajdhani', 'sans-serif'],
         'body': ['Inter', 'system-ui', 'sans-serif'],
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+      },
       animation: {
         'fade-in': 'fadeIn 1s ease-in',
         'slide-up': 'slideUp 0.8s ease-out',
