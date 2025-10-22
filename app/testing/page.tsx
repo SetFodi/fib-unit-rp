@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { ArrowRightLeft, RotateCcw, FileText } from 'lucide-react'
 
 type TestCategory = 'background-check' | 'psych-eval' | 'field-test'
 
@@ -26,24 +27,24 @@ export default function Testing() {
   const categories = [
     {
       id: 'background-check' as TestCategory,
-      title: 'Background Check',
-      icon: '📋',
-      description: 'Submit your information for a comprehensive background investigation',
+      title: 'როტაცია',
+      icon: ArrowRightLeft,
+      description: 'ნებისმიერი სხვა სამთავრობო ორგანიზაციიდან ფედერალურ საგამოძიებო ბიუროში გადასვლა. საჭიროა თქვენი ორგანიზაციის ხელმძღვანელის თანხმობა.',
       color: 'from-fib-blue to-fib-accent'
     },
     {
       id: 'psych-eval' as TestCategory,
-      title: 'Psychological Evaluation',
-      icon: '🧠',
-      description: 'Request a psychological assessment for field readiness',
+      title: 'აღდგენა',
+      icon: RotateCcw,
+      description: 'აღდგენის განაცხადის შევსება ფედერალური საგამოძიებო ბიუროს ყოფილი აგენტებისთვის.',
       color: 'from-fib-accent to-fib-blue'
     },
     {
       id: 'field-test' as TestCategory,
-      title: 'Field Test Application',
-      icon: '🎯',
-      description: 'Apply for practical field examination and skills assessment',
-      color: 'from-fib-gold/30 to-fib-accent'
+      title: 'განცხადება',
+      icon: FileText,
+      description: 'განცხადება ფედერალურ საგამოძიებო ბიუროში დასასაქმებლად.',
+      color: 'from-fib-accent to-fib-blue'
     }
   ]
 
@@ -109,12 +110,11 @@ export default function Testing() {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 className="text-5xl md:text-7xl font-heading font-bold mb-6 bg-gradient-to-r from-fib-gold to-fib-gold-light bg-clip-text text-transparent">
-            Testing & Evaluation
+          <h1 className="text-5xl md:text-7xl font-georgian font-bold mb-6 bg-gradient-to-r from-fib-gold to-fib-gold-light bg-clip-text text-transparent leading-tight pb-2">
+            ვაკანსიები
           </h1>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Select your test category and submit your application. 
-            Our team will review and respond within 24-48 hours.
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed font-georgian">
+           შემოუერთდით ელიტარულ სამუშაო ძალას, რომლის მიზანია მთელი ამერიკის მასშტაბით უზრუნველყოს საზოგადოების უსაფრთხოება.
           </p>
         </motion.div>
 
@@ -131,23 +131,31 @@ export default function Testing() {
                   y: -10,
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
-                whileTap={{ scale: 0.98 }}
-                onClick={() => handleCategorySelect(category.id)}
-                className={`group bg-gradient-to-br ${category.color} p-8 rounded-2xl cursor-pointer shadow-xl hover:shadow-2xl transition-all duration-300 border-2 border-fib-gold/20 hover:border-fib-gold`}
+                className={`group relative bg-gradient-to-br ${category.color} p-8 rounded-2xl cursor-not-allowed shadow-xl transition-all duration-300 border-2 border-gray-600/40 hover:border-fib-gold/50 opacity-50 grayscale hover:grayscale-0`}
               >
+                {/* Disabled Overlay Message */}
+                <div className="absolute inset-0 flex items-center justify-center bg-fib-dark/0 group-hover:bg-fib-dark/80 transition-all duration-300 rounded-2xl opacity-0 group-hover:opacity-100 z-10">
+                  <div className="text-center px-4">
+                    <p className="text-xl md:text-2xl font-georgian font-bold text-fib-gold leading-loose pb-1">
+                      განცხადებების მიღება შეწყვეტილია
+                    </p>
+                  </div>
+                </div>
+
                 <motion.div
                   whileHover={{ 
                     scale: 1.1,
+                    rotate: 5,
                     transition: { duration: 0.3, ease: "easeOut" }
                   }}
-                  className="text-6xl mb-4 inline-block"
+                  className="mb-4 inline-block"
                 >
-                  {category.icon}
+                  <category.icon className="w-16 h-16 text-fib-gold" strokeWidth={1.5} />
                 </motion.div>
-                <h3 className="text-2xl font-heading font-bold mb-3 text-fib-gold group-hover:text-fib-gold-light transition-colors duration-300">
+                <h3 className="text-2xl font-georgian font-bold mb-3 text-fib-gold group-hover:text-fib-gold-light transition-colors duration-300 leading-loose pb-2">
                   {category.title}
                 </h3>
-                <p className="text-gray-200">
+                <p className="text-gray-200 font-georgian leading-relaxed">
                   {category.description}
                 </p>
               </motion.div>
@@ -166,16 +174,18 @@ export default function Testing() {
             {/* Selected Category Header */}
             <div className="flex items-center justify-between mb-8">
               <div className="flex items-center space-x-4">
-                <span className="text-5xl">
-                  {categories.find(cat => cat.id === selectedCategory)?.icon}
-                </span>
+                <div className="flex-shrink-0">
+                  {(() => {
+                    const CategoryIcon = categories.find(cat => cat.id === selectedCategory)?.icon
+                    return CategoryIcon ? <CategoryIcon className="w-12 h-12 text-fib-gold" strokeWidth={1.5} /> : null
+                  })()}
+                </div>
                 <div>
                   <h2 className="text-3xl font-heading font-bold text-fib-gold">
                     {categories.find(cat => cat.id === selectedCategory)?.title}
                   </h2>
                   <p className="text-gray-300">
-                    Complete the form below to submit your application
-                  </p>
+                  განაცხადის წარსადგენად შეავსეთ ქვემოთ მოცემული ფორმა                  </p>
                 </div>
               </div>
               <motion.button
@@ -192,7 +202,7 @@ export default function Testing() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                  Full Name *
+                  სრული სახელი *
                 </label>
                 <input
                   type="text"
@@ -202,13 +212,13 @@ export default function Testing() {
                   onChange={handleInputChange}
                   required
                   className="w-full px-4 py-3 bg-fib-blue/50 border border-fib-gold/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-fib-gold focus:ring-2 focus:ring-fib-gold/50 transition-all"
-                  placeholder="Enter your full name"
+                  placeholder="შეიყვანეთ თქვენი სრული სახელი"
                 />
               </div>
 
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
-                  Subject *
+                  სათაური *
                 </label>
                 <input
                   type="text"
@@ -218,13 +228,13 @@ export default function Testing() {
                   onChange={handleInputChange}
                   required
                   className="w-full px-4 py-3 bg-fib-blue/50 border border-fib-gold/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-fib-gold focus:ring-2 focus:ring-fib-gold/50 transition-all"
-                  placeholder="Brief subject of your application"
+                  placeholder="შეიყვანეთ სათაური/თემა"
                 />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                  Message *
+                  განცხადება *
                 </label>
                 <textarea
                   id="message"
@@ -234,7 +244,7 @@ export default function Testing() {
                   required
                   rows={6}
                   className="w-full px-4 py-3 bg-fib-blue/50 border border-fib-gold/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-fib-gold focus:ring-2 focus:ring-fib-gold/50 transition-all resize-none"
-                  placeholder="Provide detailed information about your application..."
+                  placeholder="შეიყვანეთ თქვენი განცხადების დეტალები..."
                 />
               </div>
 
@@ -262,7 +272,7 @@ export default function Testing() {
                     </svg>
                     Submitting...
                   </span>
-                ) : 'Submit Application'}
+                ) : 'განაცხადის დატოვება'}
               </motion.button>
             </form>
 
@@ -297,7 +307,7 @@ export default function Testing() {
           className="mt-16 text-center text-gray-400"
         >
           <p className="text-sm">
-            All applications are confidential and will be reviewed by authorized FIB personnel only.
+          ყველა განაცხადი კონფიდენციალურია და მას მხოლოდ FIB-ის უფლებამოსილი თანამშრომლები განიხილავენ.
           </p>
         </motion.div>
       </div>

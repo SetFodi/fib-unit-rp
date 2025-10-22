@@ -16,8 +16,9 @@ module.exports = {
         'fib-darker': '#04070f',
       },
       fontFamily: {
-        'heading': ['Rajdhani', 'sans-serif'],
-        'body': ['Inter', 'system-ui', 'sans-serif'],
+        'heading': ['BPG ExtraSquare Mtavruli', 'Rajdhani', 'sans-serif'],
+        'body': ['BPG ExtraSquare Mtavruli', 'Inter', 'system-ui', 'sans-serif'],
+        'georgian': ['BPG ExtraSquare Mtavruli', 'sans-serif'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

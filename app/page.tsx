@@ -14,26 +14,26 @@ export default function Home() {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8])
 
-  const goals = [
+  const operations = [
     {
-      title: "Protect & Serve",
-      description: "Maintaining law and order across Los Santos, ensuring the safety of all citizens through dedicated service and unwavering commitment.",
-      icon: "🛡️"
+      title: "სპეცოპერაციები",
+      description: "ჩვენი აგენტები ყოველდღიურად პატრულირებენ, ატარებენ გამოძიებებს, აგროვებენ ინფორმაციას და რეაგირებენ საგანგებო სიტუაციებზე.",
+      image: "/1.png"
     },
     {
-      title: "Intelligence Operations",
-      description: "Conducting covert operations and intelligence gathering to prevent criminal activities and maintain national security.",
-      icon: "🔍"
+      title: "შტაბი",
+      description: "ოპერაციების კოორდინირებისთვის და ინფორმაციის ანალიზისთვის აუცილებელი უახლესი ტექნოლოგიით დაკომპლოქტებული დაწესებულება.",
+      image: "/2.png"
     },
     {
-      title: "Crime Prevention",
-      description: "Proactive measures to prevent organized crime, gang activities, and corruption within the city's infrastructure.",
-      icon: "⚖️"
+      title: "სწრაფი რეაგირება",
+      description: "საგანგებო სიტუაციების და მაღალი რისკის შემცველი ოპერაციებისთვის მუდმივ მზაობაში მყოფი ელიტური დანაყოფი.",
+      image: "/3.png"
     },
     {
-      title: "Community Trust",
-      description: "Building strong relationships with the community through transparency, accountability, and professional excellence.",
-      icon: "🤝"
+      title: "სამხილი და კრიმინალისტიკა",
+      description: "სამხილების ანალიზისთვის და დაკითხვების ჩატარებისთვის პასუხისმგებელი სპეციალური დანაყოფი.",
+      image: "/4.png"
     }
   ]
 
@@ -142,11 +142,11 @@ export default function Home() {
             transition={{ delay: 1.1, duration: 0.8 }}
             className="flex items-center justify-center gap-4 text-lg md:text-xl text-fib-gold font-medium"
           >
-            <span>Excellence</span>
+            <span>პროფესიონალიზმი</span>
             <span className="text-fib-gold/50">•</span>
-            <span>Integrity</span>
+            <span>ერთიანობა</span>
             <span className="text-fib-gold/50">•</span>
-            <span>Justice</span>
+            <span>სამართალი</span>
           </motion.div>
 
           <motion.div
@@ -166,7 +166,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Goals Section */}
+      {/* Operations Section */}
       <section className="relative py-20 px-4 bg-gradient-to-b from-fib-dark via-fib-accent to-fib-dark">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -177,48 +177,56 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-5xl md:text-6xl font-heading font-bold mb-6 bg-gradient-to-r from-fib-gold to-fib-gold-light bg-clip-text text-transparent">
-              Our Mission
+              ჩვენი მიზანი
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-              Dedicated to protecting Los Santos through superior intelligence, 
-              unwavering dedication, and commitment to justice.
+             ლოს სანტოსის უსაფრთსოების უზრუნველყოფა და მუდმივი ბრძოლა სამართლიანობისთვის.
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {goals.map((goal, index) => (
+            {operations.map((operation, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ 
                   duration: 0.8, 
-                  delay: index * 0.2,
-                  type: "spring",
-                  stiffness: 100
+                  delay: index * 0.15,
                 }}
                 whileHover={{ 
-                  y: -5,
+                  y: -8,
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
-                className="group bg-gradient-to-br from-fib-accent/50 to-fib-blue/50 p-8 rounded-xl border border-fib-gold/20 hover:border-fib-gold/60 transition-all duration-300 cursor-pointer backdrop-blur-sm"
+                className="group relative bg-gradient-to-br from-fib-accent/30 to-fib-blue/30 rounded-xl border border-fib-gold/20 hover:border-fib-gold/60 transition-all duration-300 cursor-pointer backdrop-blur-sm overflow-hidden"
               >
-                <motion.div 
-                  className="text-6xl mb-4 inline-block"
-                  whileHover={{ 
-                    scale: 1.1,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                >
-                  {goal.icon}
-                </motion.div>
-                <h3 className="text-2xl font-heading font-bold mb-4 text-fib-gold group-hover:text-fib-gold-light transition-colors duration-300">
-                  {goal.title}
-                </h3>
-                <p className="text-gray-300 leading-relaxed">
-                  {goal.description}
-                </p>
+                {/* Image */}
+                <div className="relative h-64 overflow-hidden">
+                  <Image 
+                    src={operation.image} 
+                    alt={operation.title}
+                    fill
+                    className={`object-cover transition-transform duration-500 group-hover:scale-110 ${index === 0 ? 'object-top' : ''}`}
+                  />
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-fib-dark via-fib-dark/50 to-transparent" />
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="text-2xl font-heading font-bold mb-3 text-fib-gold group-hover:text-fib-gold-light transition-colors duration-300">
+                    {operation.title}
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed">
+                    {operation.description}
+                  </p>
+                </div>
+
+                {/* Glow effect on hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-t from-fib-gold/10 to-transparent" />
+                </div>
               </motion.div>
             ))}
           </div>
@@ -235,11 +243,10 @@ export default function Home() {
           className="max-w-4xl mx-auto text-center"
         >
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-fib-gold">
-            Join Our Elite Team
+            შემოუერთდით ჩვენს ელიტარულ გუნდს
           </h2>
           <p className="text-xl text-gray-300 mb-10 leading-relaxed">
-            Think you have what it takes? We're looking for dedicated individuals 
-            ready to serve and protect Los Santos.
+            ჩვენ ვეძებთ მოტივირებულ და დისციპლინირებულ ინდივიდებს, რომლებიც მზად არიან ემსახურონ და დაიცვან ლოს სანტოსი 
           </p>
           <motion.a
             href="/recruitment"
@@ -251,11 +258,12 @@ export default function Home() {
             whileTap={{ scale: 0.98 }}
             className="inline-block bg-gradient-to-r from-fib-gold to-fib-gold-light text-fib-darker px-10 py-4 rounded-lg font-heading font-bold text-lg transition-all duration-300 shadow-lg"
           >
-            Apply Now
+            შემოგვიერთდი
           </motion.a>
         </motion.div>
       </section>
     </main>
   )
 }
+
 

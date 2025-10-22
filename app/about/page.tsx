@@ -1,36 +1,35 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
+import { Award, Shield, Scale, Lightbulb } from 'lucide-react'
 
 export default function About() {
   const values = [
-    {
-      title: 'Excellence',
-      description: 'We strive for the highest standards in all our operations, ensuring every agent embodies professionalism and expertise.',
-      icon: '⭐'
-    },
-    {
-      title: 'Integrity',
-      description: 'Our commitment to ethical conduct and transparency guides every decision we make in service of Los Santos.',
-      icon: '🎖️'
-    },
-    {
-      title: 'Justice',
-      description: 'We are dedicated to upholding the law and ensuring fair treatment for all citizens of our great city.',
-      icon: '⚖️'
-    },
-    {
-      title: 'Innovation',
-      description: 'Utilizing cutting-edge technology and tactics to stay ahead of criminal organizations.',
-      icon: '💡'
-    }
+    
   ]
 
-  const stats = [
-    { number: '500+', label: 'Active Agents' },
-    { number: '24/7', label: 'Operations' },
-    { number: '98%', label: 'Case Success Rate' },
-    { number: '15+', label: 'Years of Service' }
+  const departments = [
+    { 
+      code: 'FA', 
+      name: 'უნივერსალური აგენტები',
+      description: 'აგენტები, რომლებსაც შეუძლიათ საჭიროების შემთხვევაში ნებისმიერ დანაყოფს დაეხმარონ.'
+    },
+    { 
+      code: 'IB', 
+      name: 'გენერალური ინსპექცია',
+      description: 'შიდა ინსპექციის და ანტი კორუფციული დეპარტამენტის მუშაკები.'
+    },
+    { 
+      code: 'HRT', 
+      name: 'მძევლების სამაშველო ჯგუფი',
+      description: 'ელიტური დანაყოფი, რომლებიც პასუხისმგებლები არიან საგანგებო სიტუაციებისა და მაღალი რისკის შემცველი საფრთხეების წარმართვაზე.'
+    },
+    { 
+      code: 'CID', 
+      name: 'სისხლის სამართლის გამოძიების განყოფილება',
+      description: 'რთული სისხლის სამართლის საქმეების გამოძიება და დამნაშავეების პასუხისგებაში მიცემა.'
+    }
   ]
 
   return (
@@ -44,99 +43,83 @@ export default function About() {
           className="text-center mb-16"
         >
           <h1 className="text-5xl md:text-7xl font-heading font-bold mb-6 bg-gradient-to-r from-fib-gold to-fib-gold-light bg-clip-text text-transparent">
-            About FIB
+            FIB-ის შესახებ
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            The Federal Investigation Bureau is the premier law enforcement agency in Los Santos, 
-            dedicated to protecting citizens and maintaining order through intelligence-driven operations.
+          ფედერალური საგამოძიებო ბიურო ლოს სანტოსის წამყვანი სამართალდამცავი ორგანოა, რომელიც დაზვერვაზე დაფუძნებული ოპერაციების მეშვეობით მოქალაქეების დაცვასა და წესრიგის შენარჩუნებას ემსახურება.
           </p>
         </motion.div>
 
-        {/* Stats Section */}
+        {/* Departments Section */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20"
+          className="mb-20"
         >
-          {stats.map((stat, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              whileHover={{ 
-                y: -5,
-                transition: { duration: 0.3, ease: "easeOut" }
-              }}
-              className="bg-gradient-to-br from-fib-blue to-fib-accent p-6 rounded-xl text-center border border-fib-gold/20 hover:border-fib-gold/50 transition-all duration-300"
-            >
-              <div className="text-4xl font-heading font-bold text-fib-gold mb-2">{stat.number}</div>
-              <div className="text-gray-300 text-sm">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Mission Statement */}
-        <motion.section
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-20 bg-fib-accent/50 backdrop-blur-lg rounded-2xl p-8 md:p-12 border border-fib-gold/30"
-        >
-          <h2 className="text-4xl font-heading font-bold mb-6 text-fib-gold">Our Mission</h2>
-          <p className="text-gray-300 text-lg leading-relaxed mb-4">
-            The FIB stands as the cornerstone of federal law enforcement in Los Santos and the surrounding territories. 
-            Our mission is multifaceted: we investigate and prevent organized crime, conduct intelligence operations, 
-            and work tirelessly to ensure the safety and security of all citizens.
-          </p>
-          <p className="text-gray-300 text-lg leading-relaxed">
-            Through cutting-edge technology, rigorous training, and unwavering dedication, we maintain the highest 
-            standards of professionalism in the face of evolving threats. Every agent of the FIB embodies our core 
-            values and works as part of an elite team committed to justice.
-          </p>
-        </motion.section>
-
-        {/* Core Values */}
-        <motion.section
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-4xl font-heading font-bold mb-12 text-center text-fib-gold">Core Values</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {values.map((value, index) => (
+          <h2 className="text-4xl font-heading font-bold mb-10 text-center text-fib-gold">ჩვენი დანაყოფებები</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {departments.map((dept, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.2, duration: 0.6 }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
                 whileHover={{ 
                   y: -5,
                   transition: { duration: 0.3, ease: "easeOut" }
                 }}
-                className="group bg-gradient-to-br from-fib-accent/50 to-fib-blue/50 p-8 rounded-xl border border-fib-gold/20 hover:border-fib-gold/60 transition-all duration-300"
+                className="group bg-gradient-to-br from-fib-blue to-fib-accent p-6 rounded-xl border border-fib-gold/20 hover:border-fib-gold/60 transition-all duration-300"
               >
-                <motion.div
-                  className="text-5xl mb-4 inline-block"
-                  whileHover={{ 
-                    scale: 1.1,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                >
-                  {value.icon}
-                </motion.div>
-                <h3 className="text-2xl font-heading font-bold mb-3 text-fib-gold group-hover:text-fib-gold-light transition-colors duration-300">{value.title}</h3>
-                <p className="text-gray-300 leading-relaxed">{value.description}</p>
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <motion.div
+                      whileHover={{ 
+                        scale: 1.1,
+                        rotate: 5,
+                        transition: { duration: 0.3, ease: "easeOut" }
+                      }}
+                      className="relative w-16 h-16 rounded-lg border-2 border-fib-gold transition-all duration-300 group/badge"
+                    >
+                      {/* Logo Image */}
+                      <div className="absolute inset-0 rounded-lg overflow-hidden opacity-100 group-hover/badge:opacity-0 transition-opacity duration-300 flex items-center justify-center">
+                        <Image 
+                          src={`/${dept.code}.png`}
+                          alt={dept.code}
+                          width={60}
+                          height={60}
+                          className={`${
+                            dept.code === 'FA' ? 'object-contain invert brightness-0 invert scale-75' : 
+                            dept.code === 'HRT' ? 'object-contain scale-75' : 
+                            dept.code === 'IB' ? 'object-cover w-full h-full' :
+                            'object-contain'
+                          }`}
+                        />
+                      </div>
+                      
+                      {/* Text */}
+                      <div className="absolute inset-0 bg-fib-gold/20 group-hover/badge:bg-fib-gold/30 rounded-lg flex items-center justify-center opacity-0 group-hover/badge:opacity-100 transition-all duration-300">
+                        <span className="text-2xl font-heading font-bold text-fib-gold">{dept.code}</span>
+                      </div>
+                    </motion.div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-heading font-bold text-fib-gold group-hover:text-fib-gold-light transition-colors duration-300 mb-2">
+                      {dept.name}
+                    </h3>
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      {dept.description}
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
-        </motion.section>
+        </motion.div>
+
+
 
         {/* History Section */}
         <motion.section
@@ -146,17 +129,35 @@ export default function About() {
           transition={{ duration: 0.8 }}
           className="mt-20 bg-gradient-to-br from-fib-blue to-fib-accent rounded-2xl p-8 md:p-12 border border-fib-gold/30"
         >
-          <h2 className="text-4xl font-heading font-bold mb-6 text-fib-gold">Our History</h2>
+          <h2 className="text-4xl font-heading font-bold mb-6 text-fib-gold">ჩვენი ისტორია</h2>
           <p className="text-gray-300 text-lg leading-relaxed mb-4">
-            Established over 15 years ago, the FIB was created in response to the growing need for a specialized 
-            federal law enforcement agency capable of tackling complex criminal enterprises operating across Los Santos.
+          2015 წელს LSPD-სა და IAA-ს შორის რამდენიმე ერთობლივი ოპერაციის ჩაშლის შემდეგ, სან ანდრეასის შტატის მთავრობამ გადაწყვიტა ფედერალური უსაფრთხოების სისტემის რეფორმირება. შედეგად, შეიქმნა ახალი სტრუქტურა - ფედერალური გამოძიების ბიურო (FIB), რომლის ამოცანაა წესრიგის აღდგენა, ორგანიზებული დანაშაულის წინააღმდეგ ბრძოლა და ეროვნული უსაფრთხოებისთვის საფრთხეების პრევენცია.
           </p>
-          <p className="text-gray-300 text-lg leading-relaxed">
-            From our humble beginnings with a small team of dedicated agents, we have grown into a sophisticated 
-            organization with state-of-the-art facilities, advanced investigative capabilities, and a reputation 
-            for excellence that is recognized throughout the region. Today, we continue to adapt and evolve, 
-            staying ahead of emerging threats while maintaining our commitment to protecting the citizens we serve.
+          <p className="text-gray-300 text-lg leading-relaxed mb-8">
+          დაარსების პირველივე დღეებიდან FIB-მა თავი დაიმკვიდრა, როგორც ელიტური სააგენტო, რომელიც დისციპლინის, კონფიდენციალურობისა და ეფექტურობის პრინციპებით მოქმედებს. მისი დანაყოფები იძიებენ კორუფციას, კიბერდანაშაულს, ტერორიზმს და აკონტროლებენ ადგილობრივი სამართალდამცავი ორგანოების საქმიანობას.
           </p>
+          <p className="text-gray-300 text-lg leading-relaxed mb-8">
+          დღეს FIB ფედერალური ხელისუფლებისა და წესრიგის სიმბოლოა, რომელიც იცავს სახელმწიფოს ინტერესებს და მოქალაქეების უსაფრთხოებას.
+          </p>
+
+          {/* Motto/Slogan */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="relative mt-8 p-6 border-l-4 border-fib-gold bg-fib-gold/5 rounded-r-lg"
+          >
+            <div className="flex items-start space-x-3">
+              <span className="text-fib-gold text-3xl font-bold opacity-50">"</span>
+              <div className="flex-1">
+                <p className="text-xl md:text-2xl font-heading font-semibold text-fib-gold italic leading-relaxed">
+                  ჩვენ ვხედავთ იმას, რაც დაფარულია. ჩვენ ვმოქმედებთ იქ, სადაც სხვებს ეშინიათ.
+                </p>
+              </div>
+              <span className="text-fib-gold text-3xl font-bold opacity-50 self-end">"</span>
+            </div>
+          </motion.div>
         </motion.section>
       </div>
     </main>
